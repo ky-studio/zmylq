@@ -11,8 +11,9 @@ public class LoadScripts : MonoBehaviour
     public float a;
     int index;//代表当前读取的行数？
     public bool isnull;
-    List<string> txt;
+   // List<string> txt;
     public TextAsset T;
+    string[] s;
     
     private void Awake()
     {
@@ -35,23 +36,25 @@ public class LoadScripts : MonoBehaviour
     {
         Debug.Log("start");
         index = 0;
-        txt = new List<string>();
-        StreamReader stream = new StreamReader("Assets/Resources/" + txtFileName);
+        //txt = new List<string>();
+       // StreamReader stream = new StreamReader("Assets/Resources/" + txtFileName);
 
         T = Resources.Load("simplestory1") as TextAsset;
         if (T != null)
-            Debug.Log("下面是resourceload读取："+T.text+"resourceload end");
+            Debug.Log("下面是resourceload读取："+T.text+" resourceload end");
 
-
-       
-
+        s = T.text.Split('\n');
+        Debug.Log("slength:"+s.Length);
+        for (int i = 0; i < s.Length; i++)
+            Debug.Log(s[i]);
+     
         Debug.Log(txtFileName);
 
-        while(!stream.EndOfStream)
-        {
-            txt.Add(stream.ReadLine());
-        }
-        stream.Close();
+        //while(!stream.EndOfStream)
+       // {
+        //    txt.Add(stream.ReadLine());
+        //}
+       // stream.Close();
         instance.isnull = false;
         Debug.Log("end");
         //for(int i=0;i<txt.Count;i++)
@@ -59,27 +62,35 @@ public class LoadScripts : MonoBehaviour
     }
     public ScriptData LoadNext()
     {
-        if (index < txt.Count)
+        //if (index < txt.Count)
+       if (index < s.Length)
         {
            
-            Debug.Log("count=:"+txt.Count);
-            string[] datas = txt[index].Split(';');//这里采用分号更好，因为对话中可能有都好，而且应当是英文分号
-            Debug.Log("index=:"+index);
+            //Debug.Log("count=:"+.Count);
+            string[] datas = s[index].Split(';');//这里采用分号更好，因为对话中可能有都好，而且应当是英文分号
+
+            for (int i = 0; i < datas.Length; i++)
+                Debug.Log("datas: " +i+"   "+ datas[i]);
+
+
+            Debug.Log("loadnext index=:"+index);
             int type = int.Parse(datas[0]);
-           
+            Debug.Log("type没有问题");
             if (0 == type)//就只有背景图片的设置
             {
                 string picName = datas[1];
                 index++;
+                Debug.Log("if type=0没有问题");
                 return new ScriptData(type, picName);
-
+                
             }
             else if(1==type)//就只有type+名字+对话
             {
                 string name = datas[1];
                 string talk = datas[2];
-                Debug.Log(datas[1]);
-                Debug.Log(datas[2]);
+
+                //Debug.Log(datas[1]);
+                //Debug.Log(datas[2]);
                 index++;
                 return new ScriptData(type, name, talk);
             }

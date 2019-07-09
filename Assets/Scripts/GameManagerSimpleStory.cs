@@ -50,7 +50,36 @@ public class GameManagerSimpleStory : MonoBehaviour
     }
     public void setImage(Image image,string picName)
     {
-        image.sprite = loadPicture("Assets/background/" + picName);
+        //image.sprite = loadPicture("Assets/background/" + picName);
+        //image.sprite = Resources.Load("bg2") as Sprite;
+        Debug.Log("setImage   what??  "+ picName.Length);
+        //Resources.Load<Sprite>("bg2");
+        //string pn = "bg2";
+        //picName.Replace("\n", "");
+        //picName.Replace(" ", "");
+        //picName.Replace("\t", "");
+        string sn = picName.Substring(0, picName.Length - 1);//去掉多余的东西
+        Debug.Log("picNamelength " + picName.Length);
+
+        Object Preb = Resources.Load(sn, typeof(Sprite));
+        Sprite tmpsprite = null;
+        Debug.Log("preb是否加载成功啊？" +Preb.name);
+        try
+        {
+            tmpsprite = Instantiate(Preb) as Sprite;
+        }
+        catch (System.Exception ex)
+        {
+            Debug.Log("加载失败了");
+        }
+
+        //用加载得到的资源对象，实例化游戏对象，实现游戏物体的动态加载
+        Debug.Log("是否加载成功啊？" + tmpsprite.name);
+
+        image.sprite = tmpsprite;
+
+        
+
     }
     public Sprite loadPicture(string picPath)
     {
@@ -84,7 +113,10 @@ public class GameManagerSimpleStory : MonoBehaviour
             return;
         if(0==data.type)
         {
+            Debug.Log("dat.picName:"+data.picName);
             setImage(background, data.picName);
+
+            Debug.Log("setimage没有问题");
             print(data.picName);
             handleData(LoadScripts.instance.LoadNext());
             //handleData(ls.LoadNext());
