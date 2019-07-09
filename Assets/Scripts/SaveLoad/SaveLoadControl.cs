@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class SaveLoadControl : MonoBehaviour
 {
@@ -22,44 +23,60 @@ public class SaveLoadControl : MonoBehaviour
     {
         //SceneManager.LoadScene("scene2",LoadSceneMode.Additive);
         //SceneManager.SetActiveScene(SceneManager.GetSceneByName("scene2"));
-       // SceneManager.UnloadScene(SceneManager.GetSceneByName("sceneSaveLoad"));
+        // SceneManager.UnloadScene(SceneManager.GetSceneByName("sceneSaveLoad"));
         SceneManager.UnloadSceneAsync(SceneManager.GetSceneByName("sceneSaveLoad"));
+        //SceneManager.LoadScene("scene0");
+    }
+    public void OnClickButtonReturnMenu()
+    {
+        SceneManager.LoadScene("scene0");
     }
     public void OnClickButtonFile1()
     {
-        GameObject fbt1 = GameObject.Find("file1");
-        Renderer rd = fbt1.GetComponent<Renderer>();
-        rd.material.color = Color.red;
+        ChooseFile(1);
+
     }
     public void OnClickButtonFile2()
     {
-        GameObject fbt1 = GameObject.Find("file2");
-        Renderer rd = fbt1.GetComponent<Renderer>();
-        rd.material.color = Color.red;
+        ChooseFile(2);
+
     }
     public void OnClickButtonFile3()
     {
-        GameObject fbt1 = GameObject.Find("file3");
-        Renderer rd = fbt1.GetComponent<Renderer>();
-        rd.material.color = Color.red;
+        ChooseFile(3);
     }
     public void OnClickButtonFile4()
     {
-        GameObject fbt1 = GameObject.Find("file4");
-        Renderer rd = fbt1.GetComponent<Renderer>();
-        rd.material.color = Color.red;
+        ChooseFile(4);
     }
     public void OnClickButtonFile5()
     {
-        GameObject fbt1 = GameObject.Find("file5");
-        Renderer rd = fbt1.GetComponent<Renderer>();
-        rd.material.color = Color.red;
+        ChooseFile(5);
 
     }
     public void OnClickButtonFile6()
     {
-        GameObject fbt1 = GameObject.Find("file6");
-        Renderer rd = fbt1.GetComponent<Renderer>();
-        rd.material.color = Color.red;
+        ChooseFile(6);
+    }
+    public void ChooseFile(int index)
+    {
+        GameObject[] filesix=new GameObject[6];
+        filesix[0] = GameObject.Find("file1");
+        filesix[1] = GameObject.Find("file2");
+        filesix[2] = GameObject.Find("file3");
+        filesix[3] = GameObject.Find("file4");
+        filesix[4] = GameObject.Find("file5");
+        filesix[5] = GameObject.Find("file6");
+
+        for(int i=0;i<6;i++)
+        {
+            if(i==index-1)
+            {
+                filesix[i].GetComponent<Image>().color = Color.red;
+            }
+            else
+                filesix[i].GetComponent<Image>().color = Color.white;
+        }
+
     }
 }

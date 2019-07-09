@@ -35,7 +35,8 @@ public class GameManagerSimpleStory : MonoBehaviour
     }
     public void OnClickWholeNext()
     {
-        if (Input.GetMouseButtonDown(0) && LoadScripts.instance.isnull == false)
+        Debug.Log("下一条：");
+        if (LoadScripts.instance.isnull == false)
         {
             Debug.Log("正确处理");
             handleData(LoadScripts.instance.LoadNext());

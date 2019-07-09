@@ -66,12 +66,13 @@
     <Compile Include="Assets\Scripts\DialogScriptControl.cs" />
     <Compile Include="Assets\Scripts\GameManagerSimpleStory.cs" />
     <Compile Include="Assets\Scripts\LoadScripts.cs" />
-    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\SaveLoad\SaveLoadControl.cs" />
     <Compile Include="Assets\Scripts\scene0buttoncontrol.cs" />
     <Compile Include="Assets\Scripts\ScriptData.cs" />
+    <Compile Include="Assets\Scripts\startmenu\fadeinout.cs" />
+    <Compile Include="Assets\Scripts\Story\Storycontrol.cs" />
     <Compile Include="Assets\startgame.cs" />
-    <None Include="Assets\StoryScripts\simplestory1.txt" />
+    <None Include="Assets\Resources\simplestory1.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>D:/GitHub/zmylq/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

@@ -12,6 +12,7 @@ public class LoadScripts : MonoBehaviour
     int index;//代表当前读取的行数？
     public bool isnull;
     List<string> txt;
+    public TextAsset T;
     
     private void Awake()
     {
@@ -35,7 +36,15 @@ public class LoadScripts : MonoBehaviour
         Debug.Log("start");
         index = 0;
         txt = new List<string>();
-        StreamReader stream = new StreamReader("Assets/StoryScripts/" + txtFileName);
+        StreamReader stream = new StreamReader("Assets/Resources/" + txtFileName);
+
+        T = Resources.Load("simplestory1") as TextAsset;
+        if (T != null)
+            Debug.Log("下面是resourceload读取："+T.text+"resourceload end");
+
+
+       
+
         Debug.Log(txtFileName);
 
         while(!stream.EndOfStream)
